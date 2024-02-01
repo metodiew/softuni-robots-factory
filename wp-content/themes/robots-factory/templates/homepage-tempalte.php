@@ -7,6 +7,7 @@
 <?php
 $robots_homepage_post_per_page = get_option( 'robots_homepage_post_per_page' );
 
+
 if ( empty( $robots_homepage_post_per_page ) ) {
     $robots_homepage_post_per_page = 3;
 }
