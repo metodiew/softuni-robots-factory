@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jQuery(document).ready(function($){
 
     // Partner slider
         $('#partner-slider').owlCarousel({

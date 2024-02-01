@@ -4,12 +4,18 @@
 // @TODO register nav menu
 
 if ( ! defined( 'ROBOTS_FACTORY_ASSETS_VERSION' ) ) {
-    define( 'ROBOTS_FACTORY_ASSETS_VERSION', '0.1' );
+    define( 'ROBOTS_FACTORY_ASSETS_VERSION', '0.4' );
 }
 
 if ( ! defined( 'ROBOTS_FACTORY_ASSETS_URL' ) ) {
     define( 'ROBOTS_FACTORY_ASSETS_URL', get_template_directory_uri() . '/assets/' );
 }
+
+// Generate a few theme support elements
+add_theme_support( 'title-tag' );
+add_theme_support( 'post-thumbnails' );
+
+
 
 /**
  * Function that enqueue all of our assets
@@ -28,10 +34,24 @@ function robots_enqueue_assets() {
     wp_enqueue_style( 'robots-main-style', ROBOTS_FACTORY_ASSETS_URL . '/css/main.css', array(), ROBOTS_FACTORY_ASSETS_VERSION );
 
     // Theme Scripts
-
     wp_enqueue_script( 'bootstrap', ROBOTS_FACTORY_ASSETS_URL . '/js/bootstrap.min.js', array( 'jquery' ), ROBOTS_FACTORY_ASSETS_VERSION, array() );
     wp_enqueue_script( 'jquery.magnific-popup', ROBOTS_FACTORY_ASSETS_URL . '/js/jquery.magnific-popup.min.js', array( 'jquery' ), ROBOTS_FACTORY_ASSETS_VERSION, array() );
     wp_enqueue_script( 'owl.carousel', ROBOTS_FACTORY_ASSETS_URL . '/js/owl.carousel.min.js', array( 'jquery' ), ROBOTS_FACTORY_ASSETS_VERSION, array() );
-    wp_enqueue_script( 'robots-scripts', ROBOTS_FACTORY_ASSETS_URL . '/js/script', array( 'jquery' ), ROBOTS_FACTORY_ASSETS_VERSION, array() );
+    wp_enqueue_script( 'robots-scripts', ROBOTS_FACTORY_ASSETS_URL . '/js/script.js', array( 'jquery' ), ROBOTS_FACTORY_ASSETS_VERSION, array() );
 }
 add_action( 'wp_enqueue_scripts', 'robots_enqueue_assets' );
+
+
+/**
+ * Register our menus
+ *
+ * @return void
+ */
+function robots_register_my_menus() {
+    register_nav_menus(
+        array(
+            'header-menu' => __( 'Header Menu' ),
+        )
+    );
+}
+add_action( 'init', 'robots_register_my_menus' );

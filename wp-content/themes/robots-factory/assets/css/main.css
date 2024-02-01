@@ -768,3 +768,9 @@ body{
 		padding-right: 15px;
 	}
 }
+
+/* Custom Styling */
+.current-menu-item a {
+    color: #fabe12 !important;
+	background-color: transparent;
+}

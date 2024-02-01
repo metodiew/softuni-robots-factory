@@ -7,7 +7,7 @@
 
         <?php wp_head(); ?>
 
-        <title>Robot</title>
+        <title><?php wp_title( '|', true, 'right' ); ?></title>
 
         <!-- CSS -->
 
@@ -20,7 +20,7 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
+    <body <?php body_class(); ?>>
 
     <!-- Site Header -->
         <div class="site-header-bg">
@@ -60,15 +60,19 @@
                             </button>
                         </div>
 
-                        <div class="collapse navbar-collapse" id="site-nav-bar">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
+                        <?php
+                        if ( has_nav_menu( 'header-menu' ) ) { 
+                            wp_nav_menu( $args = array(
+                                'menu'				=> "site-nav-bar", // (int|string|WP_Term) Desired menu. Accepts a menu ID, slug, name, or object.
+                                'menu_class'		=> "nav navbar-nav", // (string) CSS class to use for the ul element which forms the menu. Default 'menu'.
+                                'menu_id'			=> "site-nav-bar-id", // (string) The ID that is applied to the ul element which forms the menu. Default is the menu slug, incremented.
+                                'container'			=> "ul", // (string) Whether to wrap the ul, and what to wrap it with. Default 'div'.
+                                'container_class'	=> "collapse navbar-collapse", // (string) Class that is applied to the container. Default 'menu-{menu slug}-container'.
+                                'container_id'		=> "site-nav-bar", // (string) The ID that is applied to the container.
+                                'theme_location'    => 'header-menu',
+                            ) );
+                        }
+                        ?>
                     </nav>
                 </div>
 
