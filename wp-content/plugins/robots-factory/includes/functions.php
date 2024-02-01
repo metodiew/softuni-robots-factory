@@ -50,3 +50,25 @@ function robots_like_button() {
 
 add_action( 'wp_ajax_nopriv_robots_like_button', 'robots_like_button' );
 add_action( 'wp_ajax_robots_like_button', 'robots_like_button' );
+
+
+/**
+ * Add the top level menu page.
+ */
+function robots_options_page() {
+	add_menu_page(
+		'Robots Options',
+		'Robots Options',
+		'manage_options',
+		'robots-options',
+		'robots_options_page_html'
+	);
+}
+/**
+ * Register our softuni_options_page to the admin_menu action hook.
+ */
+add_action( 'admin_menu', 'robots_options_page' );
+
+function robots_options_page_html() {
+    include ROBOTS_FACTORY_PLUGIN_INCLUDES_DIR . '/options-page.php';
+}
